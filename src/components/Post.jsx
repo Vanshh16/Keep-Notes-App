@@ -3,11 +3,13 @@ import { ImPlus } from "react-icons/im";
 import { IconContext } from "react-icons";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Post(props) {
+function Post() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const postTheme = "post-" + location.state.theme;
   const [defaultTitle, setDefaultTitle] = useState("");
   const [defaultContent, setDefaultContent] = useState("");
   const [title, setTitle] = useState("");
@@ -53,9 +55,9 @@ function Post(props) {
 
   return (
     <div>
-      <Header />
+      <Header theme={location.state.theme} />
 
-      <form method="PUT" className="post-note">
+      <form method="PUT" className={`post-note ${postTheme}`}>
         <input
           placeholder="Enter title"
           defaultValue={defaultTitle}

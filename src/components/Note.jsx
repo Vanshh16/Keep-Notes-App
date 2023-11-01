@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function Note(props) {
   const navigate = useNavigate();
+  const noteTheme = "note-" + props.theme;
 
   let requiredNote;
   function handleClick() {
@@ -14,7 +15,8 @@ function Note(props) {
   }
   const id = props.id;
   function update() {
-    axios.post("http://localhost:4000/update", {
+    axios
+      .post("http://localhost:4000/update", {
         id,
       })
       .then((res) => {
@@ -25,10 +27,11 @@ function Note(props) {
         alert("wrong details");
         console.log(err);
       });
-    navigate("/post");
+    navigate("/post", { state: { theme: props.theme } });
   }
+
   return (
-    <div className="note">
+    <div className={`note ${noteTheme}`}>
       <h1>{props.title}</h1>
       <p>{props.content}</p>
       <button onClick={update}>

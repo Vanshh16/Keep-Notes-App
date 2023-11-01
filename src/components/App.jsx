@@ -4,8 +4,28 @@ import Footer from "./Footer";
 import Note from "./Note";
 import axios from "axios";
 import CreateArea from "./CreateArea";
+import Switch from "react-switch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faSun } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [checked, setChecked] = useState(true);
+  function toggleTheme() {
+    if (theme === "light") {
+      setChecked(false);
+      setTheme("dark");
+    } else {
+      setChecked(true);
+      setTheme("light");
+    }
+  }
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    document.body.className = theme;
+  }, [theme]);
+
   useEffect(display, []);
   const [notes, setNotes] = useState([]);
 
@@ -15,7 +35,8 @@ function App() {
   }
 
   function insert(newNote) {
-    axios.post("http://localhost:4000/insert", {
+    axios
+      .post("http://localhost:4000/insert", {
         newNote,
       })
       .then((res) => {
@@ -35,7 +56,8 @@ function App() {
   }
 
   function deleteNote(id) {
-    axios.post("http://localhost:4000/delete", {
+    axios
+      .post("http://localhost:4000/delete", {
         id,
       })
       .then((res) => {
@@ -48,10 +70,13 @@ function App() {
     setTimeout(display, 100);
   }
 
+  <div>
+    <h1>Hello, world!</h1>
+  </div>;
   return (
-    <div>
-      <Header />
-      <CreateArea onAdd={addNote} />
+    <div className={{ theme }}>
+      <Header theme={theme} />
+      <CreateArea onAdd={addNote} theme={theme} />
       {notes.map((noteItem, index) => {
         return (
           <Note
@@ -60,9 +85,37 @@ function App() {
             title={noteItem.title}
             content={noteItem.content}
             onDelete={deleteNote}
+            theme={theme}
           />
         );
       })}
+      <Switch
+        className="toggle-switch"
+        onChange={toggleTheme}
+        checked={checked}
+        heigth={45}
+        width={70}
+        onColor="#f8cf5c"
+        offColor="#333"
+        onHandleColor="#333"
+        offHandleColor="#fff"
+        uncheckedIcon={
+          <FontAwesomeIcon
+            className="moon-icon"
+            icon={faMoon}
+            size="xl"
+            style={{ color: "#ebeef5" }}
+          />
+        }
+        checkedIcon={
+          <FontAwesomeIcon
+            className="sun-icon"
+            icon={faSun}
+            size="xl"
+            style={{ color: "#282c33" }}
+          />
+        }
+      />
       <Footer />
     </div>
   );

@@ -33,9 +33,10 @@ function CreateArea(props) {
     setIsExpanded(true);
   }
 
+  const createTheme = "create-" + props.theme;
   return (
     <div>
-      <form action="POST" className="create-note">
+      <form action="POST" className={`create-note ${createTheme}`}>
         {isExpanded && (
           <input
             name="title"

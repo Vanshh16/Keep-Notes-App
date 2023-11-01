@@ -2,9 +2,10 @@ import React from "react";
 import { IconContext } from "react-icons";
 import { AiFillBulb } from "react-icons/ai";
 
-function Header() {
+function Header(props) {
+  const headerTheme = props.theme;
   return (
-    <header>
+    <header className={headerTheme}>
       <h1>
         <IconContext.Provider value={{ size: 25 }}>
           <AiFillBulb />

@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.light {
+  background-color: #fff;
+  color: #333;
+}
+
 html {
   font-family: "Montserrat", sans-serif;
 }
@@ -11,7 +21,8 @@ html {
 body {
   background: #eee;
   padding: 0 16px;
-  background-image: url("https://www.transparenttextures.com/patterns/rocky-wall.png");
+  /* background-image: url("https://www.transparenttextures.com/patterns/rocky-wall.png"); */
+  background-image: url("https://www.transparenttextures.com/patterns/light-sketch.png");
 }
 
 
@@ -20,6 +31,14 @@ header {
   margin: auto -16px;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header.light {
+  background-color: #f5ba13;
+}
+
+header.dark {
+  background-color: #c4940f;
 }
 
 header h1 {
@@ -74,14 +93,32 @@ footer p {
   outline: none;
 }
 
+.note-light button {
+  color: #f5ba13;
+}
+
+.note-dark button {
+  color: #c4940f;
+  background-color: #2d2d2d;
+}
+
+.note-light {
+  background: #fff;
+  box-shadow: 0 2px 5px #ccc;
+}
+
+.note-dark {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 2px 5px #606060;
+}
+
 form.create-note {
   position: relative;
   width: 480px;
   margin: 30px auto 20px auto;
-  background: #fff;
   padding: 15px;
   border-radius: 7px;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
 form.create-note input,
@@ -93,6 +130,28 @@ form.create-note textarea {
   font-size: 1.2em;
   font-family: inherit;
   resize: none;
+}
+
+form.create-light input,
+form.create-light textarea {
+  background: #fff;
+}
+
+form.create-dark input,
+form.create-dark textarea {
+  background: #333;
+  color: #fff;
+}
+
+.create-light {
+  background: #fff;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+.create-dark {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 1px 5px #707070;
 }
 
 form.create-note button {
@@ -120,6 +179,16 @@ form.post-note {
   box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
+form.post-light {
+  background: #fff;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+
+form.post-dark {
+  background-color: #333;
+  color: #fff;
+}
+
 form.post-note textarea {
   width: 100%;
   border: none;
@@ -141,11 +210,22 @@ form.post-note input {
   font-weight: 600;
 }
 
+form.post-light input,
+form.post-light textarea {
+  background: #fff;
+}
+
+form.post-dark input,
+form.post-dark textarea {
+  background: #333;
+  color: #fff;
+}
+
 .post-button {
   position: relative;
   bottom: -45px;
-  background: #f5ba13;
-  color: #fff;
+  /* background: #f5ba13;
+  color: #fff; */
   border: none;
   width: 180px;
   height: 36px;
@@ -157,10 +237,44 @@ form.post-note input {
   font-weight: 200;
 }
 
-.post-submit {
+.post-light .post-submit {
   float: left;
+  background: #f5ba13;
+  color: #fff;
 }
 
-.post-cancel {
+.post-dark .post-submit {
+  float: left;
+  background: #c4940f;
+  ;
+  color: #fff;
+}
+
+.post-light .post-cancel {
   float: right;
+  background: #f5ba13;
+  color: #fff;
+}
+
+.post-dark .post-cancel {
+  float: right;
+  background: #c4940f;
+  ;
+  color: #fff;
+}
+
+.toggle-switch {
+  position: absolute;
+  top: -165px;
+  box-shadow: 0px 0px 3px 2px #333;
+}
+
+.moon-icon {
+  margin-left: 18px;
+  margin-top: 1px;
+}
+
+.sun-icon {
+  margin-left: 2px;
+  margin-top: 1px;
 }
